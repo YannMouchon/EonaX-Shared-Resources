@@ -1,0 +1,24 @@
+name: Terraform
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - 'deployment/**'
+  pull_request:
+    paths:
+      - 'deployment/**'
+
+jobs:
+  Checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: 'Check Terraform files are properly formatted (run "terraform fmt -recursive" to fix)'
+        run: |
+          terraform fmt -recursive
+          git diff --exit-code
