@@ -7,14 +7,6 @@ terraform {
     helm = {
       source = "hashicorp/helm"
     }
-
-    tls = {
-      source = "hashicorp/tls"
-    }
-
-    jwks = {
-      source = "iwarapter/jwks"
-    }
   }
 }
 
@@ -29,7 +21,7 @@ provider "helm" {
   }
 
   registry {
-    url      = var.connector_helm_chart_repo
+    url      = var.helm_chart_repo
     username = var.container_registry_username
     password = var.container_registry_token
   }

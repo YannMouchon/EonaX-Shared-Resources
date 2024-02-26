@@ -33,7 +33,7 @@ You need a token to pull the Docker image of the Eona-X connector. This token is
 Once you obtained your token, you'll have _inject_ in the Terraform script. Simply run the following command:
 
 ```bash
-echo 'docker_image_pull_token = "<YOUR_TOKEN_HERE>"' > terraform.tfvars
+echo 'container_registry_token = "<YOUR_TOKEN_HERE>"' > terraform.tfvars
 ```
 
 ## Deploy the dataspace
