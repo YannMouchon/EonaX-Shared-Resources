@@ -91,11 +91,10 @@ resource "kubernetes_config_map" "postgres-config" {
     name = "pg-initdb-config"
   }
 
-
   data = {
     "db_bootstrap_script.sql" = local.db_bootstrap_script
     "init.sh" = templatefile("${path.module}/init.sh", {
-      participants : join(" ", var.participant_names)
+      participants : join(" ", concat([var.authority_name], var.participant_names))
     })
   }
 }

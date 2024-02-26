@@ -1,0 +1,650 @@
+{
+	"info": {
+		"_postman_id": "29e34005-d2be-4e9d-a11c-4db521a16896",
+		"name": "EonaX-Shared-Resource",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Authority",
+			"item": [
+				{
+					"name": "Public key",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{vaultToken}}",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "X-Vault-Token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"data\": {\r\n        \"content\": \"-----BEGIN PUBLIC KEY-----\\nMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEcDS3f35yBqbi9q35KaJ4CixIFxvt\\n6afy2Btfi8v+OZjT0RBS98r8ztPujN4o1ECGEgpak2+HpKYOkd5d8kQpjg==\\n-----END PUBLIC KEY-----\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:80/{{authorityName}}/vault/v1/secret/data/{{authorityName}}-pub",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "80",
+							"path": [
+								"{{authorityName}}",
+								"vault",
+								"v1",
+								"secret",
+								"data",
+								"{{authorityName}}-pub"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Private key",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{vaultToken}}",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "X-Vault-Token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"data\": {\r\n        \"content\": \"-----BEGIN EC PRIVATE KEY-----\\nMHcCAQEEIPDpR1AbQwqpuFozaM3+2Jk1gKF3EpreBBPVYgS39aeAoAoGCCqGSM49\\nAwEHoUQDQgAEcDS3f35yBqbi9q35KaJ4CixIFxvt6afy2Btfi8v+OZjT0RBS98r8\\nztPujN4o1ECGEgpak2+HpKYOkd5d8kQpjg==\\n-----END EC PRIVATE KEY-----\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:80/{{authorityName}}/vault/v1/secret/data/{{authorityName}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "80",
+							"path": [
+								"{{authorityName}}",
+								"vault",
+								"v1",
+								"secret",
+								"data",
+								"{{authorityName}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Participant Context (IdentityHub)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"participantId\": \"did:web:{{authorityName}}-identityhub%3A8383:api:did\",\r\n    \"did\": \"did:web:{{authorityName}}-identityhub%3A8383:api:did\",\r\n    \"active\": true,\r\n    \"key\": {\r\n        \"keyId\": \"my-key\",\r\n        \"privateKeyAlias\": \"{{authorityName}}\",\r\n        \"publicKeyPem\": \"-----BEGIN PUBLIC KEY-----\\nMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEcDS3f35yBqbi9q35KaJ4CixIFxvt\\n6afy2Btfi8v+OZjT0RBS98r8ztPujN4o1ECGEgpak2+HpKYOkd5d8kQpjg==\\n-----END PUBLIC KEY-----\"\r\n    },\r\n    \"serviceEndpoints\": [\r\n        {\r\n            \"id\": \"credential-service-url\",\r\n            \"type\": \"CredentialService\",\r\n            \"serviceEndpoint\": \"http://{{authorityName}}-identityhub:8282/api/resolution/v1/participants/ZGlkOndlYjphdXRob3JpdHktaWRlbnRpdHlodWIlM0E4MzgzOmFwaTpkaWQ\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:80/{{authorityName}}/ih/management/v1/participants",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "80",
+							"path": [
+								"{{authorityName}}",
+								"ih",
+								"management",
+								"v1",
+								"participants"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Consumer",
+			"item": [
+				{
+					"name": "Public key",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{vaultToken}}",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "X-Vault-Token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"data\": {\r\n        \"content\": \"-----BEGIN PUBLIC KEY-----\\nMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEOc48T9d92Rr5bXOyUqDs4HFvkRXF\\nDA6wGzrk3+zp8o9Unc/mutDK+ntdDycTDkNXeeJwMVQJWfKE5I9Wgb682w==\\n-----END PUBLIC KEY-----\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:80/{{consumerName}}/vault/v1/secret/data/{{consumerName}}-pub",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "80",
+							"path": [
+								"{{consumerName}}",
+								"vault",
+								"v1",
+								"secret",
+								"data",
+								"{{consumerName}}-pub"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Private key",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{vaultToken}}",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "X-Vault-Token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"data\": {\r\n        \"content\": \"-----BEGIN EC PRIVATE KEY-----\\nMHcCAQEEICNv5iWlHoubyqa0xzjiU5q4ZXO7ZZG6iSqrjUWyv1QDoAoGCCqGSM49\\nAwEHoUQDQgAEOc48T9d92Rr5bXOyUqDs4HFvkRXFDA6wGzrk3+zp8o9Unc/mutDK\\n+ntdDycTDkNXeeJwMVQJWfKE5I9Wgb682w==\\n-----END EC PRIVATE KEY-----\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:80/{{consumerName}}/vault/v1/secret/data/{{consumerName}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "80",
+							"path": [
+								"{{consumerName}}",
+								"vault",
+								"v1",
+								"secret",
+								"data",
+								"{{consumerName}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Participant Context (IdentityHub)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"participantId\": \"did:web:{{consumerName}}-identityhub%3A8383:api:did\",\r\n    \"did\": \"did:web:{{consumerName}}-identityhub%3A8383:api:did\",\r\n    \"active\": true,\r\n    \"key\": {\r\n        \"keyId\": \"my-key\",\r\n        \"privateKeyAlias\": \"{{consumerName}}\",\r\n        \"publicKeyPem\": \"-----BEGIN PUBLIC KEY-----\\nMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEOc48T9d92Rr5bXOyUqDs4HFvkRXF\\nDA6wGzrk3+zp8o9Unc/mutDK+ntdDycTDkNXeeJwMVQJWfKE5I9Wgb682w==\\n-----END PUBLIC KEY-----\"\r\n    },\r\n    \"serviceEndpoints\": [\r\n        {\r\n            \"id\": \"credential-service-url\",\r\n            \"type\": \"CredentialService\",\r\n            \"serviceEndpoint\": \"http://{{consumerName}}-identityhub:8282/api/resolution/v1/participants/ZGlkOndlYjpjb25zdW1lci1pZGVudGl0eWh1YiUzQTgzODM6YXBpOmRpZA\"\r\n        },\r\n        {\r\n            \"id\": \"dsp-url\",\r\n            \"type\": \"DSPMessaging\",\r\n            \"serviceEndpoint\": \"http://{{consumerName}}-connector:8282/api/dsp\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:80/{{consumerName}}/ih/management/v1/participants",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "80",
+							"path": [
+								"{{consumerName}}",
+								"ih",
+								"management",
+								"v1",
+								"participants"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Provider",
+			"item": [
+				{
+					"name": "Public key",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{vaultToken}}",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "X-Vault-Token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"data\": {\r\n        \"content\": \"-----BEGIN PUBLIC KEY-----\\nMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAENqKFUb7sxqJOb8TDX2PmRVRaW7R8\\n48S4RlUncssxMWHJXsrRbkv3naFOh9uB4s6++7hezPop50EdidCiK2Nfyw==\\n-----END PUBLIC KEY-----\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:80/{{providerName}}/vault/v1/secret/data/{{providerName}}-pub",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "80",
+							"path": [
+								"{{providerName}}",
+								"vault",
+								"v1",
+								"secret",
+								"data",
+								"{{providerName}}-pub"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Private key",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{vaultToken}}",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "X-Vault-Token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"data\": {\r\n        \"content\": \"-----BEGIN EC PRIVATE KEY-----\\nMHcCAQEEIB2n2AQoTo+pHUBOakicb3UaQf+VeyQTX0RH0axZdEDtoAoGCCqGSM49\\nAwEHoUQDQgAENqKFUb7sxqJOb8TDX2PmRVRaW7R848S4RlUncssxMWHJXsrRbkv3\\nnaFOh9uB4s6++7hezPop50EdidCiK2Nfyw==\\n-----END EC PRIVATE KEY-----\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:80/{{providerName}}/vault/v1/secret/data/{{providerName}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "80",
+							"path": [
+								"{{providerName}}",
+								"vault",
+								"v1",
+								"secret",
+								"data",
+								"{{providerName}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create asset \"Hello World!\"",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"@context\": {\r\n        \"@vocab\": \"https://w3id.org/edc/v0.0.1/ns/\"\r\n    },\r\n    \"@id\": \"hello-world\",\r\n    \"properties\": {\r\n        \"name\": \"Hello World asset\",\r\n        \"contenttype\": \"application/json\",\r\n        \"version\": \"1.0\",\r\n        \"description\": \"An asset that says Hello World!\"\r\n    },\r\n    \"dataAddress\": {\r\n        \"type\": \"HttpData\",\r\n        \"baseUrl\": \"http://provider-backend:8080/api/provider/data\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:80/{{providerName}}/cp/management/v3/assets",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "80",
+							"path": [
+								"{{providerName}}",
+								"cp",
+								"management",
+								"v3",
+								"assets"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create policy Eona-X Membership",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"@context\": {\r\n        \"@vocab\": \"https://w3id.org/edc/v0.0.1/ns/\"\r\n    },\r\n    \"@type\": \"PolicyDefinitionDto\",\r\n    \"@id\": \"eonax-member-only\",\r\n    \"policy\": {\r\n        \"@context\": \"http://www.w3.org/ns/odrl.jsonld\",\r\n        \"@type\": \"http://www.w3.org/ns/odrl/2/Set\",\r\n        \"permission\": [\r\n            {\r\n                \"action\": \"use\",\r\n                \"constraint\": {\r\n                    \"@type\": \"Constraint\",\r\n                    \"leftOperand\": \"MembershipCredential\",\r\n                    \"operator\": \"odrl:eq\",\r\n                    \"rightOperand\": \"active\"\r\n                }\r\n            }\r\n        ]\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:80/{{providerName}}/cp/management/v2/policydefinitions",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "80",
+							"path": [
+								"{{providerName}}",
+								"cp",
+								"management",
+								"v2",
+								"policydefinitions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create contract def \"Hello World\"",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"@id\": \"6b8f1075-e48b-4c02-9c0b-14f2e3b9bde9\",\r\n    \"@type\": \"https://w3id.org/edc/v0.0.1/ns/ContractDefinition\",\r\n    \"https://w3id.org/edc/v0.0.1/ns/accessPolicyId\": \"eonax-member-only\",\r\n    \"https://w3id.org/edc/v0.0.1/ns/contractPolicyId\": \"eonax-member-only\",\r\n    \"https://w3id.org/edc/v0.0.1/ns/assetsSelector\": [\r\n        {\r\n            \"@type\": \"https://w3id.org/edc/v0.0.1/ns/Criterion\",\r\n            \"https://w3id.org/edc/v0.0.1/ns/operandLeft\": \"https://w3id.org/edc/v0.0.1/ns/id\",\r\n            \"https://w3id.org/edc/v0.0.1/ns/operator\": \"=\",\r\n            \"https://w3id.org/edc/v0.0.1/ns/operandRight\": \"hello-world\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:80/{{providerName}}/cp/management/v2/contractdefinitions",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "80",
+							"path": [
+								"{{providerName}}",
+								"cp",
+								"management",
+								"v2",
+								"contractdefinitions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Participant Context (IdentityHub)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"participantId\": \"did:web:{{providerName}}-identityhub%3A8383:api:did\",\r\n    \"did\": \"did:web:{{providerName}}-identityhub%3A8383:api:did\",\r\n    \"active\": true,\r\n    \"key\": {\r\n        \"keyId\": \"my-key\",\r\n        \"privateKeyAlias\": \"{{providerName}}\",\r\n        \"publicKeyPem\": \"-----BEGIN PUBLIC KEY-----\\nMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAENqKFUb7sxqJOb8TDX2PmRVRaW7R8\\n48S4RlUncssxMWHJXsrRbkv3naFOh9uB4s6++7hezPop50EdidCiK2Nfyw==\\n-----END PUBLIC KEY-----\"\r\n    },\r\n    \"serviceEndpoints\": [\r\n        {\r\n            \"id\": \"credential-service-url\",\r\n            \"type\": \"CredentialService\",\r\n            \"serviceEndpoint\": \"http://{{providerName}}-identityhub:8282/api/resolution/v1/participants/ZGlkOndlYjpwcm92aWRlci1pZGVudGl0eWh1YiUzQTgzODM6YXBpOmRpZA\"\r\n        },\r\n        {\r\n            \"id\": \"dsp-url\",\r\n            \"type\": \"DSPMessaging\",\r\n            \"serviceEndpoint\": \"http://{{providerName}}-connector:8282/api/dsp\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:80/{{providerName}}/ih/management/v1/participants",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "80",
+							"path": [
+								"{{providerName}}",
+								"ih",
+								"management",
+								"v1",
+								"participants"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"pm.test(\"Status code is 200 or 204\", function () {",
+					"    pm.expect(pm.response.code).to.be.oneOf([204, 200])",
+					"});"
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "vaultToken",
+			"value": "root"
+		},
+		{
+			"key": "authorityName",
+			"value": "authority"
+		},
+		{
+			"key": "providerName",
+			"value": "provider"
+		},
+		{
+			"key": "consumerName",
+			"value": "consumer"
+		}
+	]
+}
