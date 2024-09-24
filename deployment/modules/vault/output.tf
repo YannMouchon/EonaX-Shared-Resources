@@ -1,7 +1,7 @@
 output "vault_url" {
-  value = "http://${var.participant_name}-vault:${local.vault_port}"
+  value = "http://vault:${local.vault_port}"
 }
 
-output "vault_token" {
-  value = local.vault_token
+output "vault_token_secret_name" {
+  value = kubernetes_secret.vault-secret.metadata.0.name
 }

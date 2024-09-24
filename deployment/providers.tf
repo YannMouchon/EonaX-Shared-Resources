@@ -11,18 +11,14 @@ terraform {
 }
 
 provider "kubernetes" {
-  config_path = "~/.kube/config"
+  config_path    = "~/.kube/config"
+  config_context = var.kube_context
 }
 
 provider "helm" {
 
   kubernetes {
-    config_path = "~/.kube/config"
-  }
-
-  registry {
-    url      = var.helm_chart_repo
-    username = var.container_registry_username
-    password = var.container_registry_token
+    config_path    = "~/.kube/config"
+    config_context = var.kube_context
   }
 }

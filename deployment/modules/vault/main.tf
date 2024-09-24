@@ -9,7 +9,7 @@ locals {
 resource "helm_release" "vault" {
   repository    = "https://helm.releases.hashicorp.com"
   chart         = "vault"
-  name          = "${var.participant_name}-vault"
+  name          = "vault"
   wait_for_jobs = true
 
   values = [
@@ -30,12 +30,27 @@ resource "helm_release" "vault" {
   ]
 }
 
+#######################
+## KUBERNETES SECRET ##
+#######################
+
+resource "kubernetes_secret" "vault-secret" {
+  metadata {
+    name = "vault"
+  }
+
+  data = {
+    rootToken = local.vault_token
+  }
+}
+
 ####################
 ### VAULT INGRESS ##
 ####################
+
 resource "kubernetes_ingress_v1" "vault-ingress" {
   metadata {
-    name = "${var.participant_name}-vault-ingress"
+    name = "vault-ingress"
     annotations = {
       "nginx.ingress.kubernetes.io/rewrite-target" = "/$2"
       "nginx.ingress.kubernetes.io/use-regex"      = "true"
@@ -46,7 +61,7 @@ resource "kubernetes_ingress_v1" "vault-ingress" {
     rule {
       http {
         path {
-          path = "/${var.participant_name}/vault(/|$)(.*)"
+          path = "/vault(/|$)(.*)"
           backend {
             service {
               name = helm_release.vault.metadata.0.name

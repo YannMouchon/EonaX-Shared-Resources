@@ -1,0 +1,74 @@
+{
+  "files": [
+    {
+      "file_name": "asset-index-schema.sql",
+      "repo": "Connector",
+      "path": "extensions/control-plane/store/sql/asset-index-sql"
+    },
+    {
+      "file_name": "contract-definition-schema.sql",
+      "repo": "Connector",
+      "path": "extensions/control-plane/store/sql/contract-definition-store-sql"
+    },
+    {
+      "file_name": "contract-negotiation-schema.sql",
+      "repo": "Connector",
+      "path": "extensions/control-plane/store/sql/contract-negotiation-store-sql"
+    },
+    {
+      "file_name": "policy-definition-schema.sql",
+      "repo": "Connector",
+      "path": "extensions/control-plane/store/sql/policy-definition-store-sql"
+    },
+    {
+      "file_name": "transfer-process-schema.sql",
+      "repo": "Connector",
+      "path": "extensions/control-plane/store/sql/transfer-process-store-sql"
+    },
+    {
+      "file_name": "policy-monitor-schema.sql",
+      "repo": "Connector",
+      "path": "extensions/policy-monitor/store/sql/policy-monitor-store-sql"
+    },
+    {
+      "file_name": "edr-index-schema.sql",
+      "repo": "Connector",
+      "path": "extensions/common/store/sql/edr-index-sql"
+    },
+    {
+      "file_name": "accesstoken-data-schema.sql",
+      "repo": "Connector",
+      "path": "extensions/data-plane/store/sql/accesstokendata-store-sql"
+    },
+    {
+      "file_name": "dataplane-instance-schema.sql",
+      "repo": "Connector",
+      "path": "extensions/data-plane-selector/store/sql/data-plane-instance-store-sql"
+    },
+    {
+      "file_name": "did-schema.sql",
+      "repo": "IdentityHub",
+      "path": "extensions/store/sql/identity-hub-did-store-sql"
+    },
+    {
+      "file_name": "keypairs-schema.sql",
+      "repo": "IdentityHub",
+      "path": "extensions/store/sql/identity-hub-keypair-store-sql"
+    },
+    {
+      "file_name": "participant-schema.sql",
+      "repo": "IdentityHub",
+      "path": "extensions/store/sql/identity-hub-participantcontext-store-sql"
+    },
+    {
+      "file_name": "credentials-schema.sql",
+      "repo": "IdentityHub",
+      "path": "extensions/store/sql/identity-hub-credentials-store-sql"
+    },
+    {
+      "file_name": "target-node-directory-schema.sql",
+      "repo": "FederatedCatalog",
+      "path": "extensions/store/sql/target-node-directory-sql"
+    }
+  ]
+}
