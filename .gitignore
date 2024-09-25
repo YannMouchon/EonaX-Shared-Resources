@@ -37,3 +37,6 @@ hs_err_pid*
 requirements.lock
 Chart.lock
 **/charts/
+
+# packages Helm charts
+*.tgz
