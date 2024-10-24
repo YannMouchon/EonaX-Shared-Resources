@@ -227,3 +227,12 @@ that are only for internal usage and should preferably be kept in the company's 
   identity hub.
 - the Data Plane data url (port 8282 of the Data Plane) which is used to query data the data from a provider.
 
+## Common Vulnerabilities Exposure (CVE)
+
+List of opened CVE records can be
+found [here](https://cve.mitre.org/cgi-bin/cvekey.cgi?keyword=eclipse+dataspace+connector).
+
+Each record has a score calculated with
+this [calculator](https://www.first.org/cvss/calculator/4.0#CVSS:4.0/AV:N/AC:L/AT:P/PR:H/UI:N/VC:N/VI:N/VA:N/SC:H/SI:H/SA:N/RE:L/U:Green).
+
+
