@@ -38,6 +38,8 @@ They require a `x-api-key` header in input containing the token provided by Amad
   "properties": {
     "name": "Test Asset",
     "description": "A fancy test asset",
+    "documentationUrl": "https://my-swagger-api",
+    "logoUrl": "https://my-logo.com",
     "contenttype": "application/json",
     "version": "1.0"
   },
@@ -62,6 +64,8 @@ They require a `x-api-key` header in input containing the token provided by Amad
   "properties": {
     "name": "Test Asset",
     "description": "A fancy test asset",
+    "documentationUrl": "https://my-swagger-api",
+    "logoUrl": "https://my-logo.com",
     "contenttype": "application/json",
     "version": "1.0"
   },
@@ -84,6 +88,8 @@ They require a `x-api-key` header in input containing the token provided by Amad
   "properties": {
     "name": "Test Asset",
     "description": "A fancy test asset",
+    "documentationUrl": "https://my-swagger-api",
+    "logoUrl": "https://my-logo.com",
     "contenttype": "application/json",
     "version": "1.0"
   },
