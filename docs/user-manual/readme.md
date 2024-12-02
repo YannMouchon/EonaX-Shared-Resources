@@ -15,7 +15,10 @@ In order to complete this guide, you will need few infos that will be provided b
 
 ## Steps for a participant to create a new dataset
 
-All queries detailed in this section are based on the Swagger specification of the Management API of the EDC connector.
+All queries detailed in this section are based on
+the [Swagger specification](https://eclipse-edc.github.io/Connector/openapi/management-api/) of the Management API of
+the EDC
+connector.
 
 They require a `x-api-key` header in input containing the token provided by Amadeus to interact with your connector.
 
