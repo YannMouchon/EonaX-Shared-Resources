@@ -30,7 +30,7 @@ They require a `x-api-key` header in input containing the token provided by Amad
 <CONNECTOR_URL>/cp/mgmt/v3/assets (POST)
 ```
 
-#### Request body for a REST API with an API key stored in the connector Vault:
+#### Example of request body
 
 ```json
 {
@@ -56,61 +56,31 @@ They require a `x-api-key` header in input containing the token provided by Amad
 }
 ```
 
-#### Request body for a REST API with API passed as query parameter:
-
-```json
-{
-  "@context": {
-    "@vocab": "https://w3id.org/edc/v0.0.1/ns/"
-  },
-  "@id": "my-asset-id",
-  "properties": {
-    "name": "Test Asset",
-    "description": "A fancy test asset",
-    "documentationUrl": "https://my-swagger-api",
-    "logoUrl": "https://my-logo.com",
-    "contenttype": "application/json",
-    "version": "1.0"
-  },
-  "dataAddress": {
-    "type": "HttpData",
-    "baseUrl": "https://your-api-url.com",
-    "queryParams": "projectId=my-project-id&authKey=my-token"
-  }
-}
-```
-
-#### Request body for a REST API with an Oauth2 authentication and private key stored in the connector Vault:
-
-```json
-{
-  "@context": {
-    "@vocab": "https://w3id.org/edc/v0.0.1/ns/"
-  },
-  "@id": "my-asset-id",
-  "properties": {
-    "name": "Test Asset",
-    "description": "A fancy test asset",
-    "documentationUrl": "https://my-swagger-api",
-    "logoUrl": "https://my-logo.com",
-    "contenttype": "application/json",
-    "version": "1.0"
-  },
-  "dataAddress": {
-    "type": "HttpData",
-    "baseUrl": "https://your-api-url.com",
-    "oauth2:clientId": "your-client-id",
-    "oauth2:tokenUrl": "http://your-oauth2-server/token",
-    "oauth2:privateKeyName": "private-key-alias"
-  }
-}
-```
-
 It is worth mentioning that the structure of the request to create a new dataset is composed of two sections:
 
-- the properties which are the public metadata of the dataset and are displayed in the catalog
-- the dataAddress which contains the information (e.g. url, token…) used by the provider connector to fetch the data
+- the `properties` which are the public metadata of the dataset and are displayed in the catalog
+- the `dataAddress` which contains the information (e.g. baseUrl...) used by the connector to fetch the data
   from the data source → the data address is private and thus is not readable by the other participants!
+
+As of today, the connector supports both APIs using basic auth and oauth2.
+
+Please find in the table below the supported `dataAddress` codesets:
+
+|           | Name                     | Description                                                                                                                                                                                                                                                                                                  | Mandatory | Default value |
+|-----------|--------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------|---------------|
+| Common    | `baseUrl`                | Url of the API serving the data                                                                                                                                                                                                                                                                              | yes       |               |
+|           | `path`                   | Path to be appended to the baseUrl                                                                                                                                                                                                                                                                           | no        |               |
+|           | `queryParams`            | Query params to be appended to the baseUrl                                                                                                                                                                                                                                                                   | no        |               |
+|           | `proxyPath`              | Enable the proxying of path parameters provided by the consumer when request the data                                                                                                                                                                                                                        |           | false         |
+|           | `proxyQueryParams`       | Enable the proxying of query parameters provided by the consumer when request the data                                                                                                                                                                                                                       |           | false         |
+|           | `header:*`               | Defines headers to be sent when targeting the api, e.g. this "header:foo":"bar" will tell the  connector to send the header "foo" with value "bar" when targeting the api. There is no limit on the number of headers that can be provided                                                                   |           |               |
+| Base auth | `authKey`                | Name of header in which api key will be sent (e.g. Authorization, x-api-key...)                                                                                                                                                                                                                              | no        |               |
+|           | `authCode`               | The api key to authenticate to the api. Using this approach is strongly discouraged as  it means the api key will be stored in the database. Instead we recommend to use the secretName codeset                                                                                                              | no        |               |
+|           | `secretName`             | Alias of the secret stored in the vault that contains the api key                                                                                                                                                                                                                                            |           |               |
+| Oauth2    | `oauth2:tokenUrl`        | Url of the oauth2 server                                                                                                                                                                                                                                                                                     | yes       |               |
+|           | `oauth2:clientId`        | Oauth2 client id                                                                                                                                                                                                                                                                                             | yes       |               |
+|           | `oauth2:clientSecretKey` | Alias of the secret stored in the vault that contains the client secret. This is used for the client_secret field in the access token request to the oauth2 server. Either `oauth2:clientSecretKey` or `oauth2:privateKeyName` must be provided                                                              | no        |               |
+|           | `oauth2:privateKeyName`  | Alias of the secret stored in the vault that contains the private key used to sign the client assertion token. The client assertion token is put in the client_assertion field in the access token request to the oauth2 server. Either `oauth2:clientSecretKey` or `oauth2:privateKeyName` must be provided | no        |               |
 
 #### Response
 
